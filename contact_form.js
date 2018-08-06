@@ -17,7 +17,8 @@ $(document).ready(function(){
                 url: "sms.xml",
                 async:false,
                 success: function(response) {
-                    sms = response.replace("#Name#",name);
+                    sms = xmlToString(response);
+                    sms = sms.replace("#Name#",name);
                     sms = sms.replace("#Mobile#",contact);
                     sms = sms.replace("#Email#",email);
                     sms = sms.replace("#Enquiry#",message);
@@ -40,8 +41,26 @@ $(document).ready(function(){
                             console.log(thrownError);
                         }
                     });
+                },
+                error:function(xhr, ajaxOptions, thrownError){
+                    console.log(xhr.status);          
+                    console.log(thrownError);
+                    alert("Something went wrong. Please try again.");
                 }
             });
         }
     });
 });
+function xmlToString(xmlData) { 
+
+    var xmlString;
+    //IE
+    if (window.ActiveXObject){
+        xmlString = xmlData.xml;
+    }
+    // code for Mozilla, Firefox, Opera, etc.
+    else{
+        xmlString = (new XMLSerializer()).serializeToString(xmlData);
+    }
+    return xmlString;
+} 
