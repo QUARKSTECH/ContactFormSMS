@@ -5,6 +5,7 @@ $(document).ready(function(){
         var message = $("#message").val();
         var contact = $("#contact").val();
         var sms ="";
+        const uri = 'http://localhost:61477/api/Account/sendsms'; //SECADMIN domain url
         $("#returnmessage").empty(); //To empty previous error/success message.
     //checking for blank fields	
     if(name==''||email==''||contact=='')
@@ -23,24 +24,43 @@ $(document).ready(function(){
                     sms = sms.replace("#Email#",email);
                     sms = sms.replace("#Enquiry#",message);
                     $.ajax({
-                        type: "POST",
-                        url: "http://sms.quarkstech.com/api/postsms.php",
-                        data: sms,
-                        contentType: "text/xml",
+                        url: uri,
+                        type: 'POST',
+                        ContentType: 'application/json',
+                        data: '='+sms,
                         success: function(response) {
-                        $('#returnText').html("<h2>Contact Form Submitted!</h2>")
-                        .append("<p>The transaction Id is :"+response+".We will be in touch soon.</p>")
-                        .hide()
-                        .fadeIn(1500, function() {
-                            $('#returnText').append("<img id='checkmark' src='https://png.icons8.com/ultraviolet/50/000000/ok.png' />");
-                            $("#form")[0].reset();//To reset form fields on success  
-                        });
-                        },
-                            error : function (xhr, ajaxOptions, thrownError){  
-                            console.log(xhr.status);          
-                            console.log(thrownError);
-                        }
+                            $('#returnText').html("<h2>Contact Form Submitted!</h2>")
+                            .append("<p>We will be in touch soon.</p>")
+                            .hide()
+                            .fadeIn(1500, function() {
+                                $('#returnText').append("<img id='checkmark' src='https://png.icons8.com/ultraviolet/50/000000/ok.png' />");
+                                $("#form")[0].reset();//To reset form fields on success  
+                            });
+                            },
+                                error : function (xhr, ajaxOptions, thrownError){  
+                                console.log(xhr.status);          
+                                console.log(thrownError);
+                            }
                     });
+                    // $.ajax({
+                    //     type: "POST",
+                    //     url: "http://sms.quarkstech.com/api/postsms.php",
+                    //     data: sms,
+                    //     contentType: "text/xml",
+                    //     success: function(response) {
+                    //     $('#returnText').html("<h2>Contact Form Submitted!</h2>")
+                    //     .append("<p>The transaction Id is :"+response+".We will be in touch soon.</p>")
+                    //     .hide()
+                    //     .fadeIn(1500, function() {
+                    //         $('#returnText').append("<img id='checkmark' src='https://png.icons8.com/ultraviolet/50/000000/ok.png' />");
+                    //         $("#form")[0].reset();//To reset form fields on success  
+                    //     });
+                    //     },
+                    //         error : function (xhr, ajaxOptions, thrownError){  
+                    //         console.log(xhr.status);          
+                    //         console.log(thrownError);
+                    //     }
+                    // });
                 },
                 error:function(xhr, ajaxOptions, thrownError){
                     console.log(xhr.status);          
