@@ -5,7 +5,7 @@ $(document).ready(function(){
         var message = $("#message").val();
         var contact = $("#contact").val();
         var sms ="";
-        const uri = 'http://localhost:61477/api/Account/sendsms'; //SECADMIN domain url
+        const uri = 'http://eterenalsouls.com/api/Account/sendsms'; //SECADMIN domain url
         $("#returnmessage").empty(); //To empty previous error/success message.
     //checking for blank fields	
     if(name==''||email==''||contact=='')
