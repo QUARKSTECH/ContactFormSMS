@@ -7,12 +7,15 @@ $(document).ready(function(){
         var sms ="";
         const uri = 'http://eterenalsouls.com/api/Account/sendsms'; //SECADMIN domain url
         $("#returnmessage").empty(); //To empty previous error/success message.
+        
     //checking for blank fields	
     if(name==''||email==''||contact=='')
     {
        alert("Please Fill Required Fields"); 
     }
         else{
+            $('#loader').css("display", "block");
+            $('.submit').prop('disabled', true);
             $.ajax({
                 type: "GET",
                 url: "sms.xml",
@@ -29,7 +32,8 @@ $(document).ready(function(){
                         ContentType: 'application/json',
                         data: '='+sms,
                         success: function(response) {
-                            $('#returnText').html("<h2>Contact Form Submitted!</h2>")
+                            $('#loader').css("display", "none");
+                            $('#returnText').html("<h3>Contact Form Submitted!</h2>")
                             .append("<p>We will be in touch soon.</p>")
                             .hide()
                             .fadeIn(1500, function() {
@@ -37,10 +41,12 @@ $(document).ready(function(){
                                 $("#form")[0].reset();//To reset form fields on success  
                             });
                             $('#returnText').delay(3000).fadeOut();
-                            },
+                            $('.submit').prop('disabled', false);    
+                        },
                         error : function (xhr, ajaxOptions, thrownError){  
                             console.log(xhr.status);          
                             console.log(thrownError);
+                            $('#loader').css("display", "none");
                         }
                     });
                     // $.ajax({
@@ -67,6 +73,7 @@ $(document).ready(function(){
                     console.log(xhr.status);          
                     console.log(thrownError);
                     alert("Something went wrong. Please try again.");
+                    $('#loader').css("display", "none");
                 }
             });
         }

@@ -11,8 +11,8 @@ padding:20px 30px;
 box-shadow:0 0 15px;
 font-size:14px;
 font-weight:bold;
-width:350px;
-margin:20px 250px 0 35px;
+width:400px;
+margin:20px 250px 0 296px;
 float:left;
 
 }
@@ -36,6 +36,7 @@ font-Weight:bold;
 font-size:18px;
 color:white;
 cursor: pointer;
+margin-top: 26px;
 }
 textarea{
 width:100%;
@@ -56,4 +57,8 @@ font-Weight:400;
 font-size:14px;
 color:green;
 text-align:center;
+}
+#loadersign{
+    height: 37%;
+    width: 100%;
 }
