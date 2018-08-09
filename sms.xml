@@ -4,7 +4,7 @@
     <ROUTE>4</ROUTE>
     <CAMPAIGN>Default</CAMPAIGN>
     <COUNTRY>91</COUNTRY>
-    <SMS TEXT="Name : #Name#%0aMobile : #Mobile#%0aEmail Id: #Email#%0aEnquiry : #Enquiry#" >
+    <SMS TEXT="Name : #Name#spcMobile : #Mobile#spcEmail Id: #Email#spcEnquiry : #Enquiry#" >
         <ADDRESS TO="9663291144"></ADDRESS>
         <ADDRESS TO="9608000786"></ADDRESS>
     </SMS>

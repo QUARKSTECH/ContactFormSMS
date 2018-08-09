@@ -36,11 +36,12 @@ $(document).ready(function(){
                                 $('#returnText').append("<img id='checkmark' src='https://png.icons8.com/ultraviolet/50/000000/ok.png' />");
                                 $("#form")[0].reset();//To reset form fields on success  
                             });
+                            $('#returnText').delay(3000).fadeOut();
                             },
-                                error : function (xhr, ajaxOptions, thrownError){  
-                                console.log(xhr.status);          
-                                console.log(thrownError);
-                            }
+                        error : function (xhr, ajaxOptions, thrownError){  
+                            console.log(xhr.status);          
+                            console.log(thrownError);
+                        }
                     });
                     // $.ajax({
                     //     type: "POST",
